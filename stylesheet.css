@@ -1,0 +1,22 @@
+.theme-orange {
+    color: #FC8A2B !important;
+}
+.theme-green {
+    color: #2FAA00;
+}
+.theme-bg-orange {
+    background: #FC8A2B;
+}
+.theme-bg-green {
+    background: #2FAA00;
+}
+.theme-border-green {
+    border-color: #2FAA00;
+}
+.theme-border-orange {
+    border-color: #FC8A2B;
+}
+#Footer a:hover {
+    color: #FC8A2B !important;
+}
+button:focus {outline:0;}
