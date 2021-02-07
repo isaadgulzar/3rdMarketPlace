@@ -1,3 +1,7 @@
+#home-banner {
+    background: url('./assets/images/home-banner.jpeg');
+    background-size: 100% 100%;
+}
 .theme-orange {
     color: #FC8A2B !important;
 }
