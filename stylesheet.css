@@ -1,3 +1,7 @@
+#home-banner {
+    background: url('./assets/images/home-banner.jpeg');
+    background-size: 100% 100%;
+}
 .theme-orange {
     color: #FC8A2B !important;
 }
@@ -24,4 +28,12 @@ button:focus {outline:0;}
 /* Single Product Page  */
 .breadCrumb > ol li a{
     font-size: 0.5rem !important;
+}
+.container-audio {
+    width: 80%;
+    height: auto;
+    padding: 5px;
+    background-color: #F1F3F4;
+    margin: 3px auto;
+    overflow: hidden;
 }
