@@ -37,3 +37,37 @@ button:focus {outline:0;}
     margin: 3px auto;
     overflow: hidden;
 }
+
+input[type=range]::-webkit-slider-thumb {
+	pointer-events: all;
+	width: 24px;
+	height: 24px;
+	-webkit-appearance: none;
+  
+/* @apply w-6 h-6 appearance-none pointer-events-auto; */
+}
+
+.toggleCross {
+    transform: rotate(0deg);
+    animation: rotate45 0.2s ease-in-out forwards;
+}
+@keyframes rotate45 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(45deg);
+    }
+}
+.togglePlus {
+    transform: rotate(45deg);
+    animation: rotate-45 0.2s ease-in-out forwards;
+}
+@keyframes rotate-45 {
+    from {
+        transform: rotate(45deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
