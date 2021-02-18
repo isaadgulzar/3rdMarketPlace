@@ -17,6 +17,12 @@
 .theme-border-green {
     border-color: #2FAA00;
 }
+.bg-lightgreen {
+    background: #5bdd63;
+}
+.text-lightgreen {
+    background: #5bdd63;
+}
 .theme-border-orange {
     border-color: #FC8A2B;
 }
@@ -27,7 +33,31 @@ button:focus {outline:0;}
 
 /* Single Product Page  */
 .breadCrumb > ol li a{
-    font-size: 0.5rem !important;
+    font-size: 1rem !important;
+}
+ @media screen and (min-width:1024px) and (max-width:1180px){
+    .breadCrumb > ol li a{
+        font-size: 0.6rem !important;
+    }
+ }
+ @media screen and (min-width:1180px){
+    .breadCrumb > ol li a{
+        font-size: 0.7rem !important;
+    }
+}
+
+.products .breadCrumb > ol li a{
+    font-size: .8rem !important;
+}
+ @media screen and (min-width:1024px) and (max-width:1180px){
+    .products .breadCrumb > ol li a{
+        font-size: 0.6rem !important;
+    }
+ }
+ @media screen and (min-width:1180px){
+    .products .breadCrumb > ol li a{
+        font-size: 0.7rem !important;
+    }
 }
 .container-audio {
     width: 80%;
