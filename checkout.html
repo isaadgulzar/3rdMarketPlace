@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./stylesheet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./code.js"></script>
+    <title>Checkout Page</title>
+</head>
+<body>
+    <nav class="bg-gray-800 fixed z-50 w-full">
+      <div class="max-w-7xl py-1 mx-auto px-2 md:px-4 lg:px-8">
+        <div class="relative flex items-center justify-between h-16">
+          <div class="flex items-center pr-0 lg:pr-2 px-2 lg:px-0">
+            <div class="flex-shrink-0">
+              <img class="hidden lg:block h-36 w-auto -ml-3" src="./assets/images/3rdMPDesktop.png" alt="Workflow">
+              <img class="block lg:hidden h-16 w-auto" src="./assets/images/3rdLogoMobile.png" alt="Workflow">
+            </div>
+          </div>
+          <div class="flex-1 flex justify-center px-4 lg:px-2">
+            <div class="max-w-lg w-full lg:max-w-xs">
+              <label for="search" class="sr-only">Search</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-700 text-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 md:text-sm" placeholder="Search" type="search">
+              </div>
+            </div>
+          </div>
+          <button class="inline-flex items-center justify-center text-gray-400 outline-none focus:outline-none" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg id="openNavIcon" onclick="toggleNavOpen()" class="lg:hidden block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <span class="sr-only">Close main menu</span>
+            <svg id="closeNavIcon" onclick="toggleNavClose()" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div class="flex items-center px-2 lg:px-0">
+            <div class="hidden lg:block">
+              <div class="flex space-x-4">
+                <a href="https://3rdmarketplace.com/account" class="theme-bg-orange text-gray-800 px-3 py-2 rounded-md text-sm font-medium">Account</a>
+                <a href="https://3rdmarketplace.com/account/bookings/" class="theme-orange hover:text-white px-3 py-2 rounded-md text-sm font-medium">Orders</a>
+                <a href="https://3rdmarketplace.com/account/customer-chat/" class="theme-orange hover:text-white px-3 py-2 rounded-md text-sm font-medium">Messages</a>
+                <a href="https://3rdmarketplace.com/dashboard/" class="theme-orange hover:text-white px-3 py-2 rounded-md text-sm font-medium">Seller</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Mobile menu, toggle classes based on menu state.-->
+      <div id="MobileNav" class="hidden lg:hidden">
+        <div class="relative flex items-center justify-center h-16">
+          <div class="flex items-center px-2 lg:px-0">
+            <div class="block">
+              <div class="flex space-x-4">
+                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                <a href="https://3rdmarketplace.com/account" class="theme-bg-orange text-gray-800 px-3 py-2 rounded-md text-sm font-medium">Account</a>
+                <a href="https://3rdmarketplace.com/account/bookings/" class="theme-orange hover:text-white px-3 py-2 rounded-md text-sm font-medium">Orders</a>
+                <a href="https://3rdmarketplace.com/account/customer-chat/" class="theme-orange hover:text-white px-3 py-2 rounded-md text-sm font-medium">Messages</a>
+                <a href="https://3rdmarketplace.com/dashboard/" class="theme-orange hover:text-white px-3 py-2 rounded-md text-sm font-medium">Seller</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="min-w-screen min-h-screen bg-gray-100 flex items-center p-5 lg:p-10 overflow-hidden relative">
+        <div class="w-full max-w-7xl rounded bg-white shadow-xl p-4 md:p-10 pb-10 mt-20 xl:mt-14 lg:p-30 mx-auto text-gray-800 relative md:text-left">
+          <div class="md:grid md:grid-cols-2 md:space-x-5">
+            <!-- Left Column -->
+            <div class="flex flex-col space-y-5">
+              <!-- Order Summary -->
+              <div class="border px-3 py-2">
+                <h1 class="text-xl font-bold theme-green my-2">Order Summary</h1>
+                <div class="lg:grid grid-cols-3">
+                  <div class="w-full col-span-1">
+                    <div class="relative">
+                        <img src="./assets/images/product.jpg" class="w-full relative z-10" alt="">
+                    </div>
+                  </div>
+                  <div class="w-full col-span-2">
+                    <div class="relative lg:ml-3">
+                      <nav class="flex my-1 lg:my-0.5 lg:mt-2 breadCrumb overflow-x-scroll xl:overflow-x-visible" aria-label="Breadcrumb">
+                        <ol class="bg-gray-800 pr-5 flex space-x-2 text-center h-12 lg:h-9">
+                            <li class="flex">
+                            <div class="flex items-center">
+                                <a href="#" class="ml-2 font-medium text-white hover:text-green-500">North America</a>
+                            </div>
+                            </li>
+                            <li class="flex">
+                            <div class="flex items-center">
+                                <svg class="flex-shrink-0 w-4 h-full text-gray-300" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                                </svg>
+                                <a href="#" aria-current="page" class="ml-2 font-medium text-white hover:text-green-500">Rocket League</a>
+                            </div>
+                            </li>
+                            <li class="flex">
+                            <div class="flex items-center">
+                                <svg class="flex-shrink-0 w-4 h-full text-gray-300" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                                </svg>
+                                <a href="#" aria-current="page" class="ml-2 font-medium text-white hover:text-green-500">General Game Play</a>
+                            </div>
+                            </li>
+                        </ol>
+                      </nav>
+                      <h1 class="font-bold uppercase text-xl md:text-2xl">Kriya Duo Boosting</h1>
+                      <p class="text-md theme-green -mt-1 md:-mt-2">
+                        <span class="text-xl font-semibold theme-orange">$<span class="text-2xl ml-1">10</span>.00/hour</span>
+                      </p>
+                      <p class="text-xs text-gray-500">Minimum: <a href="#" class="theme-green cursor-pointer">2 Games/hour</a></p>
+                      <p class="text-xs text-gray-500">Game Server: <a href="#" class="theme-green cursor-pointer">General Game Play</a></p>
+                      <!-- <div class="col-span-3 my-2">
+                        <div class="bg-white overflow-hidden ml-3">
+                          <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2">
+                            <dt class="text-sm font-medium text-gray-500">
+                              Booking Start
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
+                              0600 January, 18, 2021 (Toronto)
+                            </dd>
+                          </div>
+                          <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2">
+                            <dt class="text-sm font-medium text-gray-500">
+                              Booking End
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
+                              0700 January, 18, 2021 (Toronto)
+                            </dd>
+                          </div>
+                          <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2 border-gray-600 border-dotted">
+                            <dt class="text-sm font-bold text-gray-800">
+                              Total Cost
+                            </dt>
+                            <dd class="mt-1 text-sm font-bold text-gray-800 md:mt-0 md:col-span-2">
+                              $100
+                            </dd>
+                          </div>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                  <div class="col-span-3 my-2">
+                    <div class="bg-white overflow-hidden lg:ml-3">
+                      <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2">
+                        <dt class="text-sm font-medium text-gray-500">
+                          Booking Start
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
+                          0600 January, 18, 2021 (Toronto)
+                        </dd>
+                      </div>
+                      <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2">
+                        <dt class="text-sm font-medium text-gray-500">
+                          Booking End
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
+                          0700 January, 18, 2021 (Toronto)
+                        </dd>
+                      </div>
+                      <div class="py-1 flex justify-between md:grid md:grid-cols-3 md:gap-4 border-t-2 border-gray-600 border-dotted">
+                        <dt class="text-xl md:text-sm font-bold text-gray-800">
+                          Total Cost
+                        </dt>
+                        <dd class="lg:mt-1 text-xl md:text-sm font-bold text-gray-800 md:mt-0 md:col-span-2">
+                          $100
+                        </dd>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Product Details -->
+              <div class="border px-3 py-2">
+                <h1 class="text-xl font-bold theme-green my-2">Product Details</h1>
+                <div class="flex flex-col">
+                  <!-- <div class="w-full">
+                    <div class="relative ml-3">
+                      <h1 class="font-bold uppercase text-xl md:text-2xl">Kriya Duo Boosting</h1>
+                      <p class="text-md theme-green -mt-2">
+                        <span class="text-xl font-semibold theme-orange">$<span class="text-2xl ml-1">10</span>.00/hour</span>
+                      </p>
+                      <p class="text-xs text-gray-500">Minimum: <a href="#" class="theme-green cursor-pointer">2 Games/hour</a></p>
+                      <p class="text-xs text-gray-500">Game Server: <a href="#" class="theme-green cursor-pointer">General Game Play</a></p>
+                    </div>
+                  </div> -->
+                  <div class="w-full">
+                    <div class="relative">
+                      <h1 class="text-xl font-semibold">Description</h1>
+                      <p class="text-sm font-light text-gray-700">
+                        We duo boost until you are diamond 🙂 <br>
+                        I am jungle main but I can play other roles if you are a jungler.
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo, qui architecto? 
+                        Dolor molestiae quis nesciunt itaque. Illo impedit vero, porro quasi reiciendis, eum fugit iure cupiditate, culpa sint alias labore!
+                      </p>
+                    </div>
+                  </div>
+                  <div class="w-full">
+                    <div class="relative">
+                      <h1 class="text-xl font-semibold">Refund Policy</h1>
+                      <p class="text-sm font-light">Games and products are eligible for refund within 14 days of purchase.</p>
+                      <ul class="list-disc list-inside md:ml-4">
+                        <li class="text-xs font-light text-gray-700">The time of your request for refund/credit is no more than 7 days from the time of purchase.</li>
+                        <li class="text-xs font-light text-gray-700">The game has not been activated or downloaded (including keyless redemption).</li>
+                        <li class="text-xs font-light text-gray-700">Due to Paypal limitations, Paypal refunds cannot be processed any later than  120 days from purchase.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Right Column -->
+            <div class="flex flex-col space-y-5 mt-5 md:mt-0">
+              <!-- Sold By  -->
+              <div class="border px-3 py-2">
+                <h1 class="text-xl font-bold theme-green my-2">Sold By</h1>
+              <div class="flex flex-row justify-between lg:items-center">
+                <div class="info-section">
+                  <div class="relative flex items-center space-x-2">
+                    <span class="inline-block relative">
+                        <img class="h-14 w-14 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixqx=WeaPOup1kl&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                        <span class="absolute bottom-0 right-0 block h-5 w-5 rounded-full ring-2 ring-green-400 bg-white text-green-400 font-medium text-center pt-0.5 text-xs">1h</span>
+                      </span>
+                    <div class="flex-1 min-w-0">
+                        <svg class="h-5 w-5 -mt-4 text-yellow-400" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medal" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="currentColor" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm92.52 157.26l-37.93 36.96 8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64 23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39 4.11 0 8.22 2.14 10.33 6.39l23.43 47.52 52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"></path>
+                        </svg>
+                    </div>
+                  </div>
+                  <a href="#" class="text-xs uppercase text-gray-500 hover:text-green-700">richardhyunjinseung@gmail.com</a>
+                  <ul class="flex flex-row mt-1">
+                    <li>
+                      <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                    </li>
+                    <li>
+                      <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                    </li>
+                    <li>
+                      <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                    </li>
+                    <li>
+                      <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                    </li>
+                    <li>
+                      <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                    </li>
+                    <span class="text-sm font-semibold ml-1 -mt-1">
+                        (11)
+                    </span>
+                  </ul>
+                </div>
+                <div class="chat-section -ml-7">
+                  <button type="button" class="my-2 bg-gradient-to-r from-green-500 to-yellow-500 hover:from-gray-800 hover:to-gray-800 text-white focus:outline-none px-8 py-3 lg:px-12 py-4 uppercase text-xs lg:text-md font-semibold rounded-full shadow-md">
+                    Chat
+                  </button>
+                </div>
+              </div>
+              </div>
+              <!-- Billing Information  -->
+              <div class="border px-3 py-2">
+                <h1 class="text-xl font-bold theme-green my-2">Billing Information</h1>
+                <div class="relative max-w-xl mx-auto">
+                  <form action="#" method="POST" class="grid grid-cols-1 gap-y-4 lg:gap-y-6 lg:grid-cols-2 lg:gap-x-8 mt-3">
+                    <div>
+                      <label for="first_name" class="block text-md font-light text-gray-700">First name</label>
+                      <div class="mt-1">
+                        <input type="text" name="first_name" id="first_name" autocomplete="given-name" class="py-3 px-4 font-light block w-full rounded-none bg-gray-100 focus:outline-none">
+                      </div>
+                    </div>
+                    <div>
+                      <label for="last_name" class="block text-md font-light text-gray-700">Last name</label>
+                      <div class="mt-1">
+                        <input type="text" name="last_name" id="last_name" autocomplete="family-name" class="py-3 px-4 font-light block w-full rounded-none bg-gray-100 focus:outline-none">
+                      </div>
+                    </div>
+                    <div class="lg:col-span-2">
+                      <label for="country" class="block text-md font-light text-gray-700">
+                        Country / Region
+                      </label>
+                      <div class="relative mt-1">
+                        <select id="country" name="country" autocomplete="country" class="py-3 px-4 font-light block w-full rounded-none bg-gray-100 focus:outline-none cursor-pointer">
+                            <option value="Us">United States</option>
+                            <option value="Canada">Canada</option>
+                            <option value="China">China</option>
+                            <option value="India">India</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Mexico">Mexico</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div>
+                      <label for="country" class="block text-md font-light text-gray-700">
+                        Province
+                      </label>
+                      <div class="relative mt-1">
+                        <select id="province" name="country" autocomplete="country" class="py-3 px-4 font-light block w-full rounded-none bg-gray-100 focus:outline-none cursor-pointer">
+                          <option value="AB">Alberta</option>
+                          <option value="BC">British Columbia</option>
+                          <option value="MB">Manitoba</option>
+                          <option value="NB">New Brunswick</option>
+                          <option value="NL">Newfoundland and Labrador</option>
+                          <option value="NT">Northwest Territories</option>
+                          <option value="NS">Nova Scotia</option>
+                          <option value="NU">Nunavut</option>
+                          <option value="ON">Ontario</option>
+                          <option value="PE">Prince Edward Island</option>
+                          <option value="QC">Quebec</option>
+                          <option value="SK">Saskatchewan</option>
+                          <option value="YT">Yukon Territory</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div>
+                      <label for="city" class="block text-md font-light text-gray-700">Town / City</label>
+                      <div class="mt-1">
+                        <input type="text" name="city" id="city" autocomplete="family-name" class="py-3 px-4 font-light block w-full rounded-none bg-gray-100 focus:outline-none">
+                      </div>
+                    </div>
+                    <div class="lg:col-span-2">
+                      <label for="Street_address" class="block text-md font-light text-gray-700">Street Address</label>
+                      <div class="mt-1">
+                        <input type="text" name="Street_address" id="Street_address" placeholder="House No. & Street Name" class="py-3 px-4 font-light block w-full rounded-none bg-gray-100 focus:outline-none">
+                      </div>
+                    </div>
+                    <div>
+                      <label for="Postal" class="block text-md font-light text-gray-700">Postal code</label>
+                      <div class="mt-1">
+                        <input type="text" name="Postal" id="Postal" autocomplete="given-name" class="py-3 px-4 font-light block w-full rounded-none bg-gray-100 focus:outline-none">
+                      </div>
+                    </div>
+                    <div>
+                      <label for="Apartment" class="block text-md font-light text-gray-700">Apartment <span class="inline lg:hidden xl:inline">/ Suite / Unit</span> (Optional)</label>
+                      <div class="mt-1">
+                        <input type="text" name="Apartment" id="Apartment" autocomplete="given-name" class="py-3 px-4 font-light block w-full rounded-none bg-gray-100 focus:outline-none">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!-- Payment Method  -->
+              <div class="border px-3 py-2">
+                <h1 class="text-xl font-bold theme-green my-2">Payment Method</h1>
+                <div class="relative max-w-xl mx-auto pb-10" id="tabs-id">
+                  <ul class="tab-content flex list-none flex-wrap flex-col">
+                    <li onclick="changeAtiveTab(event,'tab-one')">
+                      <div class="w-full relative border border-gray-800 p-4 p-5 flex block w-full rounded-none bg-gray-100 focus:outline-none block w-full rounded-none bg-gray-800 focus:outline-none">
+                        <div class="flex items-center h-5">
+                          <input id="settings-option-0" name="privacy_setting" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" checked>
+                        </div>
+                        <label for="settings-option-0" class="ml-3 text-white">
+                          <span class="block text-sm font-medium">
+                            Check payments
+                          </span>
+                        </label>
+                      </div>
+                      <div class="tabs-details border border-gray-800 bg-gray-50 p-5" id="tab-one">
+                        <p class="text-md font-roboto font-light">
+                          Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.                      
+                        </p>
+                      </div>
+                    </li>
+                    <li onclick="changeAtiveTab(event,'tab-two')">
+                      <div class="w-full relative border border-gray-800 p-4 flex items-center justify-between block w-full rounded-none bg-gray-800 focus:outline-none">
+                        <div class="flex items-center">
+                          <input id="settings-option-0" name="privacy_setting" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300">
+                          <label for="settings-option-0" class="ml-3 text-white">
+                            <span class="block text-sm font-medium">
+                              <span>
+                                PayPal (<a class="hover:text-green-500" href="#">What is PayPal?</a>)
+                              </span>
+                            </span>
+                          </label>
+                        </div>
+                        <svg class="h-6 md:h-7 text-white" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="cc-paypal" class="svg-inline--fa fa-cc-paypal fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                          <path fill="currentColor" d="M186.3 258.2c0 12.2-9.7 21.5-22 21.5-9.2 0-16-5.2-16-15 0-12.2 9.5-22 21.7-22 9.3 0 16.3 5.7 16.3 15.5zM80.5 209.7h-4.7c-1.5 0-3 1-3.2 2.7l-4.3 26.7 8.2-.3c11 0 19.5-1.5 21.5-14.2 2.3-13.4-6.2-14.9-17.5-14.9zm284 0H360c-1.8 0-3 1-3.2 2.7l-4.2 26.7 8-.3c13 0 22-3 22-18-.1-10.6-9.6-11.1-18.1-11.1zM576 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48zM128.3 215.4c0-21-16.2-28-34.7-28h-40c-2.5 0-5 2-5.2 4.7L32 294.2c-.3 2 1.2 4 3.2 4h19c2.7 0 5.2-2.9 5.5-5.7l4.5-26.6c1-7.2 13.2-4.7 18-4.7 28.6 0 46.1-17 46.1-45.8zm84.2 8.8h-19c-3.8 0-4 5.5-4.2 8.2-5.8-8.5-14.2-10-23.7-10-24.5 0-43.2 21.5-43.2 45.2 0 19.5 12.2 32.2 31.7 32.2 9 0 20.2-4.9 26.5-11.9-.5 1.5-1 4.7-1 6.2 0 2.3 1 4 3.2 4H200c2.7 0 5-2.9 5.5-5.7l10.2-64.3c.3-1.9-1.2-3.9-3.2-3.9zm40.5 97.9l63.7-92.6c.5-.5.5-1 .5-1.7 0-1.7-1.5-3.5-3.2-3.5h-19.2c-1.7 0-3.5 1-4.5 2.5l-26.5 39-11-37.5c-.8-2.2-3-4-5.5-4h-18.7c-1.7 0-3.2 1.8-3.2 3.5 0 1.2 19.5 56.8 21.2 62.1-2.7 3.8-20.5 28.6-20.5 31.6 0 1.8 1.5 3.2 3.2 3.2h19.2c1.8-.1 3.5-1.1 4.5-2.6zm159.3-106.7c0-21-16.2-28-34.7-28h-39.7c-2.7 0-5.2 2-5.5 4.7l-16.2 102c-.2 2 1.3 4 3.2 4h20.5c2 0 3.5-1.5 4-3.2l4.5-29c1-7.2 13.2-4.7 18-4.7 28.4 0 45.9-17 45.9-45.8zm84.2 8.8h-19c-3.8 0-4 5.5-4.3 8.2-5.5-8.5-14-10-23.7-10-24.5 0-43.2 21.5-43.2 45.2 0 19.5 12.2 32.2 31.7 32.2 9.3 0 20.5-4.9 26.5-11.9-.3 1.5-1 4.7-1 6.2 0 2.3 1 4 3.2 4H484c2.7 0 5-2.9 5.5-5.7l10.2-64.3c.3-1.9-1.2-3.9-3.2-3.9zm47.5-33.3c0-2-1.5-3.5-3.2-3.5h-18.5c-1.5 0-3 1.2-3.2 2.7l-16.2 104-.3.5c0 1.8 1.5 3.5 3.5 3.5h16.5c2.5 0 5-2.9 5.2-5.7L544 191.2v-.3zm-90 51.8c-12.2 0-21.7 9.7-21.7 22 0 9.7 7 15 16.2 15 12 0 21.7-9.2 21.7-21.5.1-9.8-6.9-15.5-16.2-15.5z"></path>
+                        </svg>
+                      </div>
+                      <div class="hidden tabs-details border border-gray-800 bg-gray-50 p-5" id="tab-two">
+                        <p class="text-md font-roboto font-light">
+                          Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account. SANDBOX ENABLED. You can use sandbox testing accounts only. See the PayPal Sandbox Testing Guide for more details.                
+                        </p>
+                      </div>
+                    </li>
+                    <li onclick="changeAtiveTab(event,'tab-three')">
+                      <div class="w-full relative border border-gray-800 p-4 flex items-center justify-between block w-full rounded-none bg-gray-800 focus:outline-none">
+                        <div class="flex items-center">
+                          <input id="settings-option-0" name="privacy_setting" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300">
+                          <label for="settings-option-0" class="ml-3 text-white">
+                            <span class="block text-sm font-medium">
+                              Credit Card (Stripe)
+                            </span>
+                          </label>
+                        </div>
+                        <div class="flex space-x-1">
+                          <svg class="h-5 md:h-6 lg:h-7" viewBox="0 0 752 471" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><rect fill="#2557D6" x="1" width="750" height="471" rx="40"/><path d="M1 221h36l8-19h18l8 19h71v-15l7 15h36l7-15v15h176v-32h3c3 0 3 0 3 4v28h91v-7c8 4 19 7 34 7h39l8-19h18l8 19h74v-18l11 18h59V99h-58v14l-9-14h-60v14l-7-14h-81c-14 0-26 2-36 7v-7h-56v7c-6-6-14-7-23-7H181l-14 31-14-31H89v14l-7-14H27L1 157v64zm227-17h-21v-69l-31 69h-18l-31-69v69H84l-8-20H32l-8 20H1l38-88h31l36 83v-83h34l28 59 25-59h35v88zM69 166l-15-35-14 35h29zm245 38h-70v-88h70v18h-49v16h48v18h-48v17h49v19zm100-65c0 14-10 22-15 24 4 1 8 5 10 7 3 5 4 8 4 16v18h-22v-12c0-5 1-12-3-17-3-3-8-3-15-3h-23v32h-21v-88h48c11 0 19 0 26 4s11 10 11 19zm-27 13c-3 2-6 2-10 2h-26v-19h26l10 1c3 2 4 4 4 8s-1 7-4 8zm60 52h-21v-88h21v88zm250 0h-30l-40-66v66h-43l-8-20h-44l-8 20h-24c-10 0-23-3-31-10-7-8-11-18-11-34 0-13 2-25 11-34 7-7 18-10 32-10h21v18h-20c-8 0-12 2-16 6-4 3-6 10-6 20 0 9 1 16 5 20s9 5 15 5h9l30-69h32l35 83v-83h33l37 61v-61h21v88zm-128-38l-15-35-14 35h29zm182 178c-5 7-15 11-29 11h-40v-19h40c4 0 7 0 9-2l2-6-2-6-8-1c-20-1-44 0-44-28 0-12 8-26 30-26h42v-17h-39c-12 0-20 2-26 7v-7h-58c-9 0-20 2-25 7v-7H500v7c-9-6-22-7-29-7h-68v7c-6-6-21-7-30-7h-76l-17 18-16-18H150v122h112l17-19 17 19h69v-29h7c9 1 20 0 29-4v33h57v-32h3c3 0 3 0 3 4v28h173c11 0 22-3 28-8v8h55c11 0 23-1 31-5v-23zm-342-47c0 24-18 29-36 29h-27v30h-41l-26-30-26 30h-84v-88h85l26 28 27-28h67c17 0 35 4 35 29zm-167 40h-52v-17h46v-18h-46v-16h53l23 25-24 26zm83 10l-32-36 32-34v70zm48-39h-27v-22h27c8 0 13 3 13 10 0 8-5 12-13 12zm143-40h70v18h-49v16h48v18h-48v17h49v19h-70v-88zm-27 47c5 1 8 5 10 7 3 4 4 8 4 16v18h-21v-11c0-6 0-14-4-18-3-3-8-4-15-4h-23v33h-21v-88h49c10 0 18 0 25 4s11 9 11 19c0 14-10 22-15 24zm-12-11l-10 1h-26v-19h26l10 1c3 2 4 4 4 8s-1 7-4 9zm190 5c4 4 7 10 7 19 0 19-12 28-33 28h-42v-19h41l9-2 2-6-2-6-8-2c-19-1-44 1-44-27 0-13 8-26 30-26h42v18h-38l-9 2c-2 1-3 3-3 6 0 4 2 6 5 7l8 1h11c12 0 20 2 24 7zm84-23h-38l-9 1c-2 2-3 4-3 7s2 5 5 6l8 1h11c12 1 19 3 24 7l2 3v-25z" fill="#FFF"/></g></svg>
+                          <svg class="h-5 md:h-6 lg:h-7" viewBox="0 0 750 471" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><rect fill="#F4F4F4" width="750" height="471" rx="40"/><path d="M619 422l-3 1a4 4 0 000 6 4 4 0 006 0 4 4 0 000-6l-3-1zm0 7a3 3 0 110-6 3 3 0 010 6zm0-5h-2v4h1v-1l1 1h1l-1-1 1-1v-1l-1-1zm0 1l1 1h-2v-1h1zm-459 3h-9v-41h9v5s8-6 12-6c9 0 14 7 14 7s4-7 14-7c14 0 16 13 16 13v29h-9v-26s0-8-9-8-10 8-10 8v26h-9v-26s-1-8-8-8c-11 0-11 8-11 8v26zm266-42c-4 0-12 6-12 6v-5h-8v41h9l-1-26s1-8 11-8l4 1 3-8-6-1zm124 0c-5 0-12 6-12 6v-5h-9v41h9v-26s0-8 10-8l5 1 3-8-6-1zm-306 0c-13 0-20 11-20 21s8 22 21 22c7 0 13-5 13-5v4h8v-41h-8v5s-6-6-14-6zm2 8c7 0 13 6 13 14 0 7-6 13-13 13s-13-6-13-13c0-8 6-14 13-14zm249-8c-13 0-20 11-20 21s8 22 21 22c7 0 13-5 13-5v4h9v-41h-9v5s-6-6-14-6zm2 8c7 0 13 6 13 14 0 7-6 13-13 13s-13-6-13-13c0-8 6-14 13-14zm81-8c-13 0-20 11-20 21s8 22 21 22c7 0 13-5 13-5v4h9v-57h-9v21s-6-6-14-6zm2 8c7 0 13 6 13 14 0 7-6 13-13 13s-13-6-13-13c0-8 6-14 13-14zm-287 35c-9 0-17-5-17-5l3-6s8 3 14 3c3 0 9-1 10-4 0-4-11-5-11-5s-15-1-15-13c0-8 8-13 17-13 6 0 17 5 17 5l-5 6-12-3c-4 0-8 2-8 5 0 8 25-1 25 17 0 11-10 13-18 13zm33-54v12h-8v9h8v20s-1 14 14 14l12-3-3-9s-4 3-7 3c-7-1-7-5-7-5v-20h14v-9h-14v-12h-9zm52 11c-15 0-22 12-21 22 0 10 6 22 21 22 7 0 16-6 16-6l-4-7s-6 5-12 5c-11 0-12-11-12-11h30s3-25-18-25zm-2 8h1c11 0 11 10 11 10h-22s0-9 10-10zm90 23l4 8s-6 4-13 4c-15 0-23-11-23-22 0-16 13-21 22-21 8 0 15 5 15 5l-5 8s-2-5-10-5-13 7-13 14 5 13 13 13c5 0 10-4 10-4z" fill="#000"/><path d="M625 279v-6h-2l-2 4-1-4h-2v6h1v-5l2 4h1l1-4v5h2zm-10 0v-5h2v-1h-4v1h1v5h1z" fill="#F79F1A"/><path d="M625 197a154 154 0 11-309 0 154 154 0 01309 0z" fill="#F79F1A"/><path d="M434 197a154 154 0 11-309 0 154 154 0 01309 0z" fill="#EA001B"/><path d="M375 75a155 155 0 000 243 155 155 0 000-243z" fill="#FF5F01"/></g></svg>
+                          <svg class="h-5 md:h-6 lg:h-7" viewBox="0 0 750 471" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><rect fill="#0E4595" width="750" height="471" rx="40"/><path d="M278 334l34-196h53l-33 196h-54zm246-191c-10-4-27-9-48-9-52 0-89 27-90 65 0 28 27 44 47 53 21 10 28 16 28 25 0 13-17 19-32 19-22 0-33-3-50-11l-7-3-8 44c13 6 36 10 60 11 56 0 92-27 93-67 0-23-14-40-45-54-19-9-30-15-30-24 0-8 9-17 30-17 18 0 30 4 40 8l5 2 7-42m138-5h-42c-12 0-22 4-28 17l-79 179h56l11-29h69l6 29h50l-43-196zm-66 127l21-55 8-19 3 17 12 57h-44zM233 138l-52 134-6-27c-10-31-40-65-74-82l48 171h56l84-196h-56" fill="#FFF"/><path d="M132 138H46l-1 5c67 16 111 55 130 102l-19-90c-3-12-12-16-24-17" fill="#F2AE14"/></g></svg>
+                        </div>
+                      </div>
+                      <div class="hidden tabs-details border border-gray-800 bg-gray-50 p-5" id="tab-three">
+                        <p class="text-md font-roboto font-light">
+                          Pay with your credit card via Stripe.                    
+                        </p>
+                        <form action="#" method="POST" class="grid grid-cols-1 gap-y-6 lg:grid-cols-2 lg:gap-x-8 mt-3">
+                          <div class="lg:col-span-2">
+                            <label for="card_number" class="block text-md font-light text-gray-700">Card Number</label>
+                            <div class="mt-1">
+                              <input type="number" name="card_number" id="card_number" placeholder="1234 1234 1234 1234" class="py-3 px-4 font-light block w-full rounded-none bg-gray-100 focus:outline-none">
+                            </div>
+                          </div>
+                          <div>
+                            <label for="expiry" class="block text-md font-light text-gray-700">Expiry Date</label>
+                            <div class="mt-1">
+                              <input type="date" name="expiry" id="expiry" autocomplete="given-name" class="py-3 px-4 font-light block w-full rounded-none bg-gray-100 focus:outline-none">
+                            </div>
+                          </div>
+                          <div>
+                            <label for="cvc" class="block text-md font-light text-gray-700">Card Code (CVC)</label>
+                            <div class="mt-1">
+                              <input type="number" name="cvc" id="cvc" autocomplete="family-name" placeholder="CVC" class="py-3 px-4 font-light block w-full rounded-none bg-gray-100 focus:outline-none">
+                            </div>
+                          </div>
+                          <div class="lg:col-span-2">
+                            <input type="checkbox" id="save_info">
+                            <label for="save_info" class="ml-3 text-md font-light text-gray-700">Save payment information to my account for future purchases.</label>
+                          </div>
+                        </form>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="mt-5">
+                    <input type="checkbox" id="save_info">
+                    <label for="save_info" class="ml-3 text-md font-light text-gray-700"> I have read and agree to the website <a href="#" class="md:font-normal hover:text-green-500">Terms and conditions</a></label>
+                  </div>
+                  <div class="absolute bottom-0 w-full -mb-10 text-center">
+                    <button type="button" class="my-2 h-12 bg-gradient-to-r from-gray-800 to-gray-800 hover:from-green-500 hover:to-yellow-500 text-white focus:outline-none px-12 py-4 uppercase text-xs lg:text-md font-semibold rounded-full">
+                      Place order
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Footer  -->
+    <div id="Footer" class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-5 pb-4 px-4 md:px-6 text-center lg:text-left">
+        <div class="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8">
+          <div class="xl:col-span-1">
+            <img class="block md:hidden h-24 mx-auto -mt-4" src="./assets/images/3rdLogoMobile.png" alt="Company name">
+            <img class="hidden md:block h-36 mx-auto -mt-11" src="./assets/images/3rdMPDesktop.png" alt="Company name">
+            <p class="text-gray-200 text-base text-center md:-mt-5 md:px-20 lg:px-5">
+              A True Global Freelance Marketplace for Gamers
+            </p>
+            <div class="flex justify-center space-x-5 mt-7">
+              <a href="#" class="text-gray-400">
+                <span class="sr-only">Facebook</span>
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400">
+                <span class="sr-only">Instagram</span>
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400">
+                <span class="sr-only">Twitter</span>
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400">
+                <span class="sr-only">GitHub</span>
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400">
+                <span class="sr-only">Dribbble</span>
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z" clip-rule="evenodd"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="md:grid md:grid-cols-1 md:gap-8 lg:ml-10">
+            <div class="mt-6 md:mt-0">
+              <h3 class="text-md font-bold theme-green tracking-wider uppercase">
+                Main
+              </h3>
+              <ul class="mt-4 space-y-4">
+                <li>
+                  <a href="https://www.3rdmarketplace.com" class="text-base text-gray-200">
+                    Home
+                  </a>
+                </li>
+  
+                <li>
+                  <a href="https://3rdmarketplace.com/about/" class="text-base text-gray-200">
+                    About Us
+                  </a>
+                </li>
+  
+                <li>
+                  <a href="https://3rdmarketplace.com/shop/" class="text-base text-gray-200">
+                    Marketplace
+                  </a>
+                </li>
+  
+                <li>
+                  <a href="https://www.3rdmarketplace.com/community/news" class="text-base text-gray-200">
+                    News &amp; Updates
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="md:grid md:grid-cols-1 md:gap-8 lg:ml-10">
+            <div class="mt-6 md:mt-0">
+                <h3 class="text-md font-bold theme-green tracking-wider uppercase">
+                    Support
+                </h3>
+                <ul class="mt-4 space-y-4">
+                  <li>
+                    <a href="https://www.3rdmarketplace.com/community/FAQ" class="text-base text-gray-200">
+                        FAQ
+                    </a>
+                  </li>
+  
+                  <li>
+                    <a href="https://3rdmarketplace.com/support/" class="text-base text-gray-200">
+                        Customer Support
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://3rdmarketplace.com/buying/" class="text-base text-gray-200">
+                        Buyer’s Responsibility
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://3rdmarketplace.com/selling/" class="text-base text-gray-200">
+                        Seller’s Responsibility
+                    </a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+          <div class="md:grid md:grid-cols-1 md:gap-8 lg:ml-20">
+            <div class="mt-6 md:mt-0">
+              <h3 class="text-md font-bold theme-green tracking-wider uppercase">
+                Legal
+              </h3>
+              <ul class="mt-4 space-y-4">
+                <li>
+                  <a href="https://3rdmarketplace.com/privacy-policy/" class="text-base text-gray-200">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="https://3rdmarketplace.com/user-agreement/" class="text-base text-gray-200">
+                    User Agreement
+                  </a>
+                </li>
+                <li>
+                  <a href="https://3rdmarketplace.com/cookiepolicy/" class="text-base text-gray-200">
+                    Cookie Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="https://3rdmarketplace.com/refund/" class="text-base text-gray-200">
+                    Refund Policy
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="mt-7 border-t theme-border-orange pt-4">
+          <p class="text-base theme-green text-center">
+            2021 © The Third Market Place
+          </p>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function changeAtiveTab(event,tabID){
+        let element = event.target;
+        while(element.nodeName !== "LI"){
+          element = element.parentNode;
+        }
+        ulElement = element.parentNode;
+        aElements = ulElement.querySelectorAll("li");
+        tabContents = document.getElementById("tabs-id").querySelectorAll(".tabs-details");
+        for(let i = 0 ; i < aElements.length; i++){
+          aElements[i].classList.add("bg-blue");
+          aElements[i].classList.remove("bg-green");
+          tabContents[i].classList.add("hidden");
+          tabContents[i].classList.remove("block");
+        }
+        element.classList.add("bg-green");
+        element.classList.remove("bg-blue");
+        document.getElementById(tabID).classList.remove("hidden");
+        document.getElementById(tabID).classList.add("block");
+      }
+    </script>
+    
+    </script>
+</body>
+</html>
