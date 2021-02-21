@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./stylesheet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./code.js"></script>
+    <title>Order Details Page</title>
+</head>
+<body>
+    <nav class="bg-gray-800 fixed z-50 w-full">
+      <div class="max-w-7xl py-1 mx-auto px-2 md:px-4 lg:px-8">
+        <div class="relative flex items-center justify-between h-16">
+          <div class="flex items-center pr-0 lg:pr-2 px-2 lg:px-0">
+            <div class="flex-shrink-0">
+              <img class="hidden lg:block h-36 w-auto -ml-3" src="./assets/images/3rdMPDesktop.png" alt="Workflow">
+              <img class="block lg:hidden h-16 w-auto" src="./assets/images/3rdLogoMobile.png" alt="Workflow">
+            </div>
+          </div>
+          <div class="flex-1 flex justify-center px-4 lg:px-2">
+            <div class="max-w-lg w-full lg:max-w-xs">
+              <label for="search" class="sr-only">Search</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-700 text-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 md:text-sm" placeholder="Search" type="search">
+              </div>
+            </div>
+          </div>
+          <button class="inline-flex items-center justify-center text-gray-400 outline-none focus:outline-none" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg id="openNavIcon" onclick="toggleNavOpen()" class="lg:hidden block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <span class="sr-only">Close main menu</span>
+            <svg id="closeNavIcon" onclick="toggleNavClose()" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div class="flex items-center px-2 lg:px-0">
+            <div class="hidden lg:block">
+              <div class="flex space-x-4">
+                <a href="https://3rdmarketplace.com/account" class="theme-bg-orange text-gray-800 px-3 py-2 rounded-md text-sm font-medium">Account</a>
+                <a href="https://3rdmarketplace.com/account/bookings/" class="theme-orange hover:text-white px-3 py-2 rounded-md text-sm font-medium">Orders</a>
+                <a href="https://3rdmarketplace.com/account/customer-chat/" class="theme-orange hover:text-white px-3 py-2 rounded-md text-sm font-medium">Messages</a>
+                <a href="https://3rdmarketplace.com/dashboard/" class="theme-orange hover:text-white px-3 py-2 rounded-md text-sm font-medium">Seller</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Mobile menu, toggle classes based on menu state.-->
+      <div id="MobileNav" class="hidden lg:hidden">
+        <div class="relative flex items-center justify-center h-16">
+          <div class="flex items-center px-2 lg:px-0">
+            <div class="block">
+              <div class="flex space-x-4">
+                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                <a href="https://3rdmarketplace.com/account" class="theme-bg-orange text-gray-800 px-3 py-2 rounded-md text-sm font-medium">Account</a>
+                <a href="https://3rdmarketplace.com/account/bookings/" class="theme-orange hover:text-white px-3 py-2 rounded-md text-sm font-medium">Orders</a>
+                <a href="https://3rdmarketplace.com/account/customer-chat/" class="theme-orange hover:text-white px-3 py-2 rounded-md text-sm font-medium">Messages</a>
+                <a href="https://3rdmarketplace.com/dashboard/" class="theme-orange hover:text-white px-3 py-2 rounded-md text-sm font-medium">Seller</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="min-w-screen min-h-screen bg-gray-100 flex items-center p-5 lg:p-10 overflow-hidden relative">
+        <div class="w-full max-w-7xl rounded bg-white shadow-xl p-4 md:p-10 pb-10 mt-20 xl:mt-14 lg:p-30 mx-auto text-gray-800 relative md:text-left">
+          <div class="md:grid md:grid-cols-2 md:space-x-5">
+            <!-- Left Column -->
+            <div class="flex flex-col space-y-5">
+              <!-- Order Summary -->
+              <div class="border px-3 py-2 pb-1">
+                <h1 class="text-xl font-bold theme-green">Order Details (Booking #<span>1234</span> )</h1>
+                <p class="text-xs font-medium mb-2">Ordered 14:25 Feburary, 21, 2021 (UTC)</p>
+                <div class="lg:grid grid-cols-3">
+                  <div class="w-full col-span-1">
+                    <div class="relative">
+                        <img src="./assets/images/product.jpg" class="w-full relative z-10" alt="">
+                    </div>
+                  </div>
+                  <div class="w-full col-span-2">
+                    <div class="relative lg:ml-3">
+                      <nav class="flex my-1 lg:my-0.5 lg:mt-2 breadCrumb overflow-x-scroll xl:overflow-x-visible" aria-label="Breadcrumb">
+                        <ol class="bg-gray-800 pr-5 flex space-x-2 text-center h-12 lg:h-9">
+                            <li class="flex">
+                            <div class="flex items-center">
+                                <a href="#" class="ml-2 font-medium text-white hover:text-green-500">North America</a>
+                            </div>
+                            </li>
+                            <li class="flex">
+                            <div class="flex items-center">
+                                <svg class="flex-shrink-0 w-4 h-full text-gray-300" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                                </svg>
+                                <a href="#" aria-current="page" class="ml-2 font-medium text-white hover:text-green-500">Rocket League</a>
+                            </div>
+                            </li>
+                            <li class="flex">
+                            <div class="flex items-center">
+                                <svg class="flex-shrink-0 w-4 h-full text-gray-300" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                                </svg>
+                                <a href="#" aria-current="page" class="ml-2 font-medium text-white hover:text-green-500">General Game Play</a>
+                            </div>
+                            </li>
+                        </ol>
+                      </nav>
+                      <h1 class="font-bold uppercase text-xl md:text-2xl">Kriya Duo Boosting</h1>
+                      <p class="text-md theme-green -mt-1 md:-mt-2">
+                        <span class="text-xl font-semibold theme-orange">$<span class="text-2xl ml-1">10</span>.00/hour</span>
+                      </p>
+                      <p class="text-xs text-gray-500">Minimum: <a href="#" class="theme-green cursor-pointer">2 Games/hour</a></p>
+                      <p class="text-xs text-gray-500">Game Server: <a href="#" class="theme-green cursor-pointer">General Game Play</a></p>
+                      <!-- <div class="col-span-3 my-2">
+                        <div class="bg-white overflow-hidden ml-3">
+                          <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2">
+                            <dt class="text-sm font-medium text-gray-500">
+                              Booking Start
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
+                              0600 January, 18, 2021 (Toronto)
+                            </dd>
+                          </div>
+                          <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2">
+                            <dt class="text-sm font-medium text-gray-500">
+                              Booking End
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
+                              0700 January, 18, 2021 (Toronto)
+                            </dd>
+                          </div>
+                          <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2 border-gray-600 border-dotted">
+                            <dt class="text-sm font-bold text-gray-800">
+                              Total Cost
+                            </dt>
+                            <dd class="mt-1 text-sm font-bold text-gray-800 md:mt-0 md:col-span-2">
+                              $100
+                            </dd>
+                          </div>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                  <div class="col-span-3 my-2">
+                    <div class="bg-white overflow-hidden lg:ml-3">
+                      <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2">
+                        <dt class="text-sm font-medium text-gray-500">
+                          Booking Start
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
+                          0600 January, 18, 2021 (Toronto)
+                        </dd>
+                      </div>
+                      <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2">
+                        <dt class="text-sm font-medium text-gray-500">
+                          Booking End
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
+                          0700 January, 18, 2021 (Toronto)
+                        </dd>
+                      </div>
+                      <div class="py-1 flex justify-between md:grid md:grid-cols-3 md:gap-4 border-t-2 border-gray-600 border-dotted">
+                        <dt class="text-xl md:text-sm font-bold text-gray-800">
+                          Total Cost
+                        </dt>
+                        <dd class="lg:mt-1 text-xl md:text-sm font-bold text-gray-800 md:mt-0 md:col-span-2">
+                          $100
+                        </dd>
+                      </div>
+                      <div class="py-1 flex">
+                        <p class="text-xl md:text-sm font-bold text-gray-800">
+                          Your booking date and time will be on hold for <span class="time">09:49</span> until you complete your checkout.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Product Details -->
+              <div class="border px-3 py-2 pb-4">
+                <h1 class="text-xl font-bold theme-green mb-2">Product Details</h1>
+                <div class="flex flex-col">
+                  <!-- <div class="w-full">
+                    <div class="relative ml-3">
+                      <h1 class="font-bold uppercase text-xl md:text-2xl">Kriya Duo Boosting</h1>
+                      <p class="text-md theme-green -mt-2">
+                        <span class="text-xl font-semibold theme-orange">$<span class="text-2xl ml-1">10</span>.00/hour</span>
+                      </p>
+                      <p class="text-xs text-gray-500">Minimum: <a href="#" class="theme-green cursor-pointer">2 Games/hour</a></p>
+                      <p class="text-xs text-gray-500">Game Server: <a href="#" class="theme-green cursor-pointer">General Game Play</a></p>
+                    </div>
+                  </div> -->
+                  <div class="w-full">
+                    <div class="relative">
+                      <h1 class="text-xl font-semibold">Description</h1>
+                      <p class="text-sm font-light text-gray-700">
+                        We duo boost until you are diamond 🙂 <br>
+                        I am jungle main but I can play other roles if you are a jungler.
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo, qui architecto? 
+                        Dolor molestiae quis nesciunt itaque. Illo impedit vero, porro quasi reiciendis, eum fugit iure cupiditate, culpa sint alias labore!
+                      </p>
+                    </div>
+                  </div>
+                  <div class="w-full">
+                    <div class="relative">
+                      <h1 class="text-xl font-semibold">Refund Policy</h1>
+                      <p class="text-sm font-light">Games and products are eligible for refund within 14 days of purchase.</p>
+                      <ul class="list-disc list-inside md:ml-4">
+                        <li class="text-xs font-light text-gray-700">The time of your request for refund/credit is no more than 7 days from the time of purchase.</li>
+                        <li class="text-xs font-light text-gray-700">The game has not been activated or downloaded (including keyless redemption).</li>
+                        <li class="text-xs font-light text-gray-700">Due to Paypal limitations, Paypal refunds cannot be processed any later than  120 days from purchase.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Right Column -->
+            <div class="flex flex-col space-y-5 mt-5 md:mt-0">
+              <!-- Sold By  -->
+              <div class="border px-3 py-2 pb-3 sm:pb-4 md:pb-3">
+                <h1 class="text-xl font-bold theme-green mb-2">Sold By</h1>
+                <div class="flex flex-col sm:flex-row md:flex-col xl:flex-row justify-between xl:items-center">
+                  <div class="info-section">
+                    <div class="relative flex items-center space-x-2">
+                      <span class="inline-block relative">
+                          <img class="h-14 w-14 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixqx=WeaPOup1kl&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                          <span class="absolute bottom-0 right-0 block h-5 w-5 rounded-full ring-2 ring-green-400 bg-white text-green-400 font-medium text-center pt-0.5 text-xs">1h</span>
+                        </span>
+                      <div class="flex-1 min-w-0">
+                          <svg class="h-5 w-5 -mt-4 text-yellow-400" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medal" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                              <path fill="currentColor" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm92.52 157.26l-37.93 36.96 8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64 23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39 4.11 0 8.22 2.14 10.33 6.39l23.43 47.52 52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"></path>
+                          </svg>
+                      </div>
+                    </div>
+                    <a href="#" class="text-xs uppercase text-gray-500 hover:text-green-700">richardhyunjinseung@gmail.com</a>
+                    <ul class="flex flex-row mt-1">
+                      <li>
+                        <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                      </li>
+                      <li>
+                        <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                      </li>
+                      <li>
+                        <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                      </li>
+                      <li>
+                        <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                      </li>
+                      <li>
+                        <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                      </li>
+                      <span class="text-sm font-semibold ml-1 -mt-1">
+                          (11)
+                      </span>
+                    </ul>
+                  </div>
+                  <div class="chat-section sm:text-center md:text-left xl:text-center mt-0.5 xl:mt-3.5">
+                    <div class="flex flex-row space-x-2 items-center mr-7 mb-0.5 xl:mb-0">
+                      <svg class="h-8 w-8 xl:h-6 xl:w-6 text-yellow-500 transform -rotate-45" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
+                      </svg>
+                      <p class="flex flex-col space-x-2 items-center xl:-mt-3 xl:mt-0 mr-7">
+                        <span class="text-lg leading-5 xl:leading-6">Pending Confirmation</span>
+                        <span class="text-xs ">27 days, 52 minutes left to confirm</span>
+                      </p>
+                    </div>
+                    <button type="button" class="my-1 xl:my-2 bg-gradient-to-r from-green-500 to-yellow-500 hover:from-gray-800 hover:to-gray-800 text-white focus:outline-none px-8 py-3 xl:px-12 py-4 uppercase text-xs lg:text-md font-semibold rounded-full shadow-md">
+                      Cancel Booking
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- Chat  -->
+              <div class="border px-3 py-2 pb-3">
+                <h1 class="text-xl font-bold theme-green mb-2">Chat</h1>
+                <div class="relative max-w-xl mx-auto">
+                  <!-- Messages Container  -->
+                  <div class="flex-1 justify-between flex flex-col h-screen">
+                    <div class="flex sm:items-center justify-between py-1 border-b-2 border-gray-200">
+                       <div class="flex items-center space-x-2">
+                          <img src="https://3rdmarketplace.com/wp-content/uploads/2021/02/cropped-wsb.png" alt="" class="w-10 sm:w-16 h-10 sm:h-16 rounded-full p-1 border-2 border-gray-200">
+                          <div class="flex flex-col leading-tight">
+                             <div class="text-2xl -mt-2 ml-3 flex items-center">
+                                <span class="text-gray-700 mr-3">Paul Kim</span>
+                                <span class="theme-green">
+                                   <svg width="10" height="10">
+                                      <circle cx="5" cy="5" r="5" fill="currentColor"></circle>
+                                   </svg>
+                                </span>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div id="messages" class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
+                       <div class="chat-message">
+                          <div class="flex items-end">
+                             <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
+                                <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-200 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span></div>
+                             </div>
+                             <img src="https://3rdmarketplace.com/wp-content/uploads/2021/02/cropped-wsb.png" alt="My profile" class="w-6 h-6 rounded-full order-1">
+                          </div>
+                       </div>
+                       <div class="chat-message">
+                          <div class="flex items-end justify-end">
+                             <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
+                                <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-green-500 text-white ">Quos itaque soluta aut reiciendis in quis animi odit eaque? Distinctio modi laudantium repellendus accusantium fugiat quidem reiciendis excepturi saepe praesentium repellat.</span></div>
+                             </div>
+                             <img src="https://saadgulzar.tech/assets/images/profile.jpg" alt="My profile" class="w-6 h-6 rounded-full order-2">
+                          </div>
+                       </div>
+                       <div class="chat-message">
+                          <div class="flex items-end">
+                             <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
+                                <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-200 text-gray-600">Lorem ipsum dolor sit amet consectetur elit.</span></div>
+                                <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-200 text-gray-600">Iure non, ab odio eaque quasi molestiae temporibus</span></div>
+                                <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-200 text-gray-600">Architecto deleniti illo debitis incidunt </span></div>
+                                <div>
+                                   <span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-200 text-gray-600">
+                                      Lorem ipsum dolor sit amet consectetur.
+                                   </span>
+                                </div>
+                             </div>
+                             <img src="https://3rdmarketplace.com/wp-content/uploads/2021/02/cropped-wsb.png" alt="My profile" class="w-6 h-6 rounded-full order-1">
+                          </div>
+                       </div>
+                       <div class="chat-message">
+                          <div class="flex items-end justify-end">
+                             <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
+                                <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-green-500 text-white ">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span></div>
+                             </div>
+                             <img src="https://saadgulzar.tech/assets/images/profile.jpg" alt="My profile" class="w-6 h-6 rounded-full order-2">
+                          </div>
+                       </div>
+                       <div class="chat-message">
+                          <div class="flex items-end">
+                             <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
+                                <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-200 text-gray-600"> Cum iusto molestias numquam magnam odio delectus repellendus, rem labore obcaecati voluptatum repellat officia.</span></div>
+                             </div>
+                             <img src="https://3rdmarketplace.com/wp-content/uploads/2021/02/cropped-wsb.png" alt="My profile" class="w-6 h-6 rounded-full order-1">
+                          </div>
+                       </div>
+                       <div class="chat-message">
+                          <div class="flex items-end justify-end">
+                             <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
+                                <div><span class="px-4 py-2 rounded-lg inline-block bg-green-500 text-white ">Odio recusandae totam dolores sit praesentium sed dolorum.</span></div>
+                                <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-green-500 text-white ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio, veniam?</span></div>
+                             </div>
+                             <img src="https://saadgulzar.tech/assets/images/profile.jpg" alt="My profile" class="w-6 h-6 rounded-full order-2">
+                          </div>
+                       </div>
+                       <div class="chat-message">
+                          <div class="flex items-end">
+                             <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
+                                <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-200 text-gray-600"> Iste, cupiditate consequatur.</span></div>
+                                <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-200 text-gray-600">Quisquam incidunt iste id culpa neque asperiores iure reprehenderit ducimus similique? Ipsa alias corrupti distinctio sit!</span></div>
+                             </div>
+                             <img src="https://3rdmarketplace.com/wp-content/uploads/2021/02/cropped-wsb.png" alt="My profile" class="w-6 h-6 rounded-full order-1">
+                          </div>
+                       </div>
+                       <div class="chat-message">
+                          <div class="flex items-end justify-end">
+                             <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
+                                <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-green-500 text-white ">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span></div>
+                             </div>
+                             <img src="https://saadgulzar.tech/assets/images/profile.jpg" alt="My profile" class="w-6 h-6 rounded-full order-2">
+                          </div>
+                       </div>
+                       <div class="chat-message">
+                          <div class="flex items-end">
+                             <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
+                                <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-200 text-gray-600">sit amet consectetur adipisicing elit.</span></div>
+                                <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-200 text-gray-600">Reprehenderit consequatur illo illum beatae similique quod. Sapiente tempore facere harum nobis quibusdam.</span></div>
+                                <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-200 text-gray-600">Good Luck</span></div>
+                             </div>
+                             <img src="https://3rdmarketplace.com/wp-content/uploads/2021/02/cropped-wsb.png" alt="My profile" class="w-6 h-6 rounded-full order-1">
+                          </div>
+                       </div>
+                    </div>
+                    <div class="border-b-2 border-gray-200 pt-2 pb-4 mb-2 sm:mb-0">
+                       <div class="relative flex">
+                          <span class="absolute inset-y-0 flex items-center">
+                             <button type="button" class="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
+                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                                </svg>
+                             </button>
+                          </span>
+                          <input type="text" placeholder="Write Something" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-full py-3">
+                          <div class="absolute right-0 items-center inset-y-0 sm:flex">
+                             <button type="button" class="hidden lg:inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
+                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                                </svg>
+                             </button>
+                             <button type="button" class="hidden lg:inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
+                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                             </button>
+                             <button type="button" class="hidden lg:inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
+                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                             </button>
+                             <button type="button" class="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out text-white bg-green-500 hover:bg-green-600 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6 transform rotate-90">
+                                   <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                                </svg>
+                             </button>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                </div>
+                <!-- Buttons -->
+                <div class="my-5 text-center">
+                  <span class="max-w-xl items-center px-1 sm:px-5 md:px-1 lg:px-5 py-1 rounded-full text-xs sm:text-sm md:text-xs lg:text-sm lg:font-medium bg-gray-200 text-gray-800">
+                      Booking will start in 5 days, 6 hours, 52 minutes
+                  </span>
+                </div>
+                <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row justify-around">
+                  <button type="button" class="my-2 h-12 w-full lg:w-52 bg-gradient-to-r from-gray-800 to-gray-800 hover:from-green-500 hover:to-yellow-500 text-white focus:outline-none px-12 uppercase text-xs lg:text-md font-semibold rounded-full">
+                    Buyer's Responsibility
+                  </button>
+                  <button type="button" class="my-2 h-12 w-full lg:w-52 bg-gradient-to-r from-gray-800 to-gray-800 hover:from-green-500 hover:to-yellow-500 text-white focus:outline-none px-12 uppercase text-xs lg:text-md font-semibold rounded-full">
+                    Report
+                </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Footer  -->
+    <div id="Footer" class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-5 pb-4 px-4 md:px-6 text-center lg:text-left">
+        <div class="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8">
+          <div class="xl:col-span-1">
+            <img class="block md:hidden h-24 mx-auto -mt-4" src="./assets/images/3rdLogoMobile.png" alt="Company name">
+            <img class="hidden md:block h-36 mx-auto -mt-11" src="./assets/images/3rdMPDesktop.png" alt="Company name">
+            <p class="text-gray-200 text-base text-center md:-mt-5 md:px-20 lg:px-5">
+              A True Global Freelance Marketplace for Gamers
+            </p>
+            <div class="flex justify-center space-x-5 mt-7">
+              <a href="#" class="text-gray-400">
+                <span class="sr-only">Facebook</span>
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400">
+                <span class="sr-only">Instagram</span>
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400">
+                <span class="sr-only">Twitter</span>
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400">
+                <span class="sr-only">GitHub</span>
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400">
+                <span class="sr-only">Dribbble</span>
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z" clip-rule="evenodd"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="md:grid md:grid-cols-1 md:gap-8 lg:ml-10">
+            <div class="mt-6 md:mt-0">
+              <h3 class="text-md font-bold theme-green tracking-wider uppercase">
+                Main
+              </h3>
+              <ul class="mt-4 space-y-4">
+                <li>
+                  <a href="https://www.3rdmarketplace.com" class="text-base text-gray-200">
+                    Home
+                  </a>
+                </li>
+  
+                <li>
+                  <a href="https://3rdmarketplace.com/about/" class="text-base text-gray-200">
+                    About Us
+                  </a>
+                </li>
+  
+                <li>
+                  <a href="https://3rdmarketplace.com/shop/" class="text-base text-gray-200">
+                    Marketplace
+                  </a>
+                </li>
+  
+                <li>
+                  <a href="https://www.3rdmarketplace.com/community/news" class="text-base text-gray-200">
+                    News &amp; Updates
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="md:grid md:grid-cols-1 md:gap-8 lg:ml-10">
+            <div class="mt-6 md:mt-0">
+                <h3 class="text-md font-bold theme-green tracking-wider uppercase">
+                    Support
+                </h3>
+                <ul class="mt-4 space-y-4">
+                  <li>
+                    <a href="https://www.3rdmarketplace.com/community/FAQ" class="text-base text-gray-200">
+                        FAQ
+                    </a>
+                  </li>
+  
+                  <li>
+                    <a href="https://3rdmarketplace.com/support/" class="text-base text-gray-200">
+                        Customer Support
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://3rdmarketplace.com/buying/" class="text-base text-gray-200">
+                        Buyer’s Responsibility
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://3rdmarketplace.com/selling/" class="text-base text-gray-200">
+                        Seller’s Responsibility
+                    </a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+          <div class="md:grid md:grid-cols-1 md:gap-8 lg:ml-20">
+            <div class="mt-6 md:mt-0">
+              <h3 class="text-md font-bold theme-green tracking-wider uppercase">
+                Legal
+              </h3>
+              <ul class="mt-4 space-y-4">
+                <li>
+                  <a href="https://3rdmarketplace.com/privacy-policy/" class="text-base text-gray-200">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="https://3rdmarketplace.com/user-agreement/" class="text-base text-gray-200">
+                    User Agreement
+                  </a>
+                </li>
+                <li>
+                  <a href="https://3rdmarketplace.com/cookiepolicy/" class="text-base text-gray-200">
+                    Cookie Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="https://3rdmarketplace.com/refund/" class="text-base text-gray-200">
+                    Refund Policy
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="mt-7 border-t theme-border-orange pt-4">
+          <p class="text-base theme-green text-center">
+            2021 © The Third Market Place
+          </p>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function changeAtiveTab(event,tabID){
+        let element = event.target;
+        while(element.nodeName !== "LI"){
+          element = element.parentNode;
+        }
+        ulElement = element.parentNode;
+        aElements = ulElement.querySelectorAll("li");
+        tabContents = document.getElementById("tabs-id").querySelectorAll(".tabs-details");
+        for(let i = 0 ; i < aElements.length; i++){
+          aElements[i].classList.add("bg-blue");
+          aElements[i].classList.remove("bg-green");
+          tabContents[i].classList.add("hidden");
+          tabContents[i].classList.remove("block");
+        }
+        element.classList.add("bg-green");
+        element.classList.remove("bg-blue");
+        document.getElementById(tabID).classList.remove("hidden");
+        document.getElementById(tabID).classList.add("block");
+      }
+    </script>
+    
+    </script>
+</body>
+</html>
