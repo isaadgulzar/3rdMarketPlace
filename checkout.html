@@ -79,18 +79,70 @@
             <!-- Left Column -->
             <div class="flex flex-col space-y-5">
               <!-- Order Summary -->
-              <div class="border px-3 py-2">
-                <h1 class="text-xl font-bold theme-green my-2">Order Summary</h1>
-                <div class="lg:grid grid-cols-3">
+              <div class="border px-3 py-2 pb-4">
+                <h1 class="text-xl font-bold theme-green">Order Summary</h1>
+                <p class="text-xs font-bold text-gray-800 mb-2">
+                  Your booking date and time will be on hold for <span class="time">09:49</span> until you complete your checkout.
+                </p>
+                <div class="xl:grid grid-cols-3">
                   <div class="w-full col-span-1">
                     <div class="relative">
                         <img src="./assets/images/product.jpg" class="w-full relative z-10" alt="">
                     </div>
+                    <!-- Sold By Section  -->
+                    <h1 class="text-xl font-bold theme-green mb-2">Sold By</h1>
+                    <div class="flex flex-col sm:flex-row md:flex-col xl:flex-row justify-between xl:items-center">
+                      <div class="info-section">
+                        <div class="relative flex items-center space-x-2">
+                          <span class="inline-block relative">
+                              <img class="h-14 w-14 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixqx=WeaPOup1kl&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                              <span class="absolute bottom-0 right-0 block h-5 w-5 rounded-full ring-2 ring-green-400 bg-white text-green-400 font-medium text-center pt-0.5 text-xs">1h</span>
+                            </span>
+                          <div class="flex-1 min-w-0">
+                              <svg class="h-5 w-5 -mt-4 text-yellow-400" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medal" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                  <path fill="currentColor" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm92.52 157.26l-37.93 36.96 8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64 23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39 4.11 0 8.22 2.14 10.33 6.39l23.43 47.52 52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"></path>
+                              </svg>
+                          </div>
+                        </div>
+                        <a href="#" class="text-xs text-gray-500 hover:text-green-700">Richardhyunjinseung@gmail.com</a>
+                        <ul class="flex flex-row mt-1">
+                          <li>
+                            <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                          </li>
+                          <li>
+                            <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                          </li>
+                          <li>
+                            <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                          </li>
+                          <li>
+                            <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                          </li>
+                          <li>
+                            <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                          </li>
+                          <span class="text-sm font-semibold ml-1 -mt-1">
+                              (11)
+                          </span>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
-                  <div class="w-full col-span-2">
-                    <div class="relative lg:ml-3">
+                  <!-- Product Pricing -->
+                  <div class="w-full col-span-2 mt-1.5 xl:mt-0">
+                    <div class="relative xl:ml-3">
                       <nav class="flex my-1 lg:my-0.5 lg:mt-2 breadCrumb overflow-x-scroll xl:overflow-x-visible" aria-label="Breadcrumb">
-                        <ol class="bg-gray-800 pr-5 flex space-x-2 text-center h-12 lg:h-9">
+                        <ol class="bg-gray-800 pr-5 flex w-full space-x-2 text-center h-12 lg:h-9">
                             <li class="flex">
                             <div class="flex items-center">
                                 <a href="#" class="ml-2 font-medium text-white hover:text-green-500">North America</a>
@@ -115,85 +167,44 @@
                         </ol>
                       </nav>
                       <h1 class="font-bold uppercase text-xl md:text-2xl">Kriya Duo Boosting</h1>
-                      <p class="text-md theme-green -mt-1 md:-mt-2">
+                      <p class="text-md theme-green">
                         <span class="text-xl font-semibold theme-orange">$<span class="text-2xl ml-1">10</span>.00/hour</span>
                       </p>
-                      <p class="text-xs text-gray-500">Minimum: <a href="#" class="theme-green cursor-pointer">2 Games/hour</a></p>
+                      <p class="text-xs text-gray-500 mt-1">Minimum: <a href="#" class="theme-green cursor-pointer">2 Games/hour</a></p>
                       <p class="text-xs text-gray-500">Game Server: <a href="#" class="theme-green cursor-pointer">General Game Play</a></p>
-                      <!-- <div class="col-span-3 my-2">
-                        <div class="bg-white overflow-hidden ml-3">
-                          <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2">
-                            <dt class="text-sm font-medium text-gray-500">
-                              Booking Start
-                            </dt>
-                            <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
-                              0600 January, 18, 2021 (Toronto)
-                            </dd>
-                          </div>
-                          <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2">
-                            <dt class="text-sm font-medium text-gray-500">
-                              Booking End
-                            </dt>
-                            <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
-                              0700 January, 18, 2021 (Toronto)
-                            </dd>
-                          </div>
-                          <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2 border-gray-600 border-dotted">
-                            <dt class="text-sm font-bold text-gray-800">
-                              Total Cost
-                            </dt>
-                            <dd class="mt-1 text-sm font-bold text-gray-800 md:mt-0 md:col-span-2">
-                              $100
-                            </dd>
-                          </div>
+                      <!-- Booking timings and cost -->
+                      <div class="bg-white overflow-hidden mt-3">
+                        <div class="py-1 md:grid md:grid-cols-3 md:gap-4">
+                          <dt class="text-sm font-medium text-gray-500">
+                            Booking Start
+                          </dt>
+                          <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
+                            0600 January, 18, 2021 (Toronto)
+                          </dd>
                         </div>
-                      </div> -->
-                    </div>
-                  </div>
-                  <div class="col-span-3 my-2">
-                    <div class="bg-white overflow-hidden lg:ml-3">
-                      <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2">
-                        <dt class="text-sm font-medium text-gray-500">
-                          Booking Start
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
-                          0600 January, 18, 2021 (Toronto)
-                        </dd>
-                      </div>
-                      <div class="py-1 md:grid md:grid-cols-3 md:gap-4 border-t-2">
-                        <dt class="text-sm font-medium text-gray-500">
-                          Booking End
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
-                          0700 January, 18, 2021 (Toronto)
-                        </dd>
-                      </div>
-                      <div class="py-1 flex justify-between md:grid md:grid-cols-3 md:gap-4 border-t-2 border-gray-600 border-dotted">
-                        <dt class="text-xl md:text-sm font-bold text-gray-800">
-                          Total Cost
-                        </dt>
-                        <dd class="lg:mt-1 text-xl md:text-sm font-bold text-gray-800 md:mt-0 md:col-span-2">
-                          $100
-                        </dd>
+                        <div class="py-1 md:grid md:grid-cols-3 md:gap-4">
+                          <dt class="text-sm font-medium text-gray-500">
+                            Booking End
+                          </dt>
+                          <dd class="mt-1 text-sm text-gray-900 md:mt-0 md:col-span-2">
+                            0700 January, 18, 2021 (Toronto)
+                          </dd>
+                        </div>
+                        <div class="py-1 flex justify-between items-center md:grid md:grid-cols-3 md:gap-4 border-t-2">
+                          <dt class="text-xl md:text-sm font-bold text-gray-800">
+                            Total Cost
+                          </dt>
+                          <dd class="text-xl md:text-sm font-bold text-gray-800 md:col-span-2">
+                            $100
+                          </dd>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- Product Details -->
-              <div class="border px-3 py-2">
-                <h1 class="text-xl font-bold theme-green my-2">Product Details</h1>
+                <!-- Product Details -->
+                <h1 class="text-xl font-bold theme-green my-2 mt-5">Product Details</h1>
                 <div class="flex flex-col">
-                  <!-- <div class="w-full">
-                    <div class="relative ml-3">
-                      <h1 class="font-bold uppercase text-xl md:text-2xl">Kriya Duo Boosting</h1>
-                      <p class="text-md theme-green -mt-2">
-                        <span class="text-xl font-semibold theme-orange">$<span class="text-2xl ml-1">10</span>.00/hour</span>
-                      </p>
-                      <p class="text-xs text-gray-500">Minimum: <a href="#" class="theme-green cursor-pointer">2 Games/hour</a></p>
-                      <p class="text-xs text-gray-500">Game Server: <a href="#" class="theme-green cursor-pointer">General Game Play</a></p>
-                    </div>
-                  </div> -->
                   <div class="w-full">
                     <div class="relative">
                       <h1 class="text-xl font-semibold">Description</h1>
@@ -205,14 +216,15 @@
                       </p>
                     </div>
                   </div>
-                  <div class="w-full">
+                  <div class="w-full mt-5">
                     <div class="relative">
                       <h1 class="text-xl font-semibold">Refund Policy</h1>
                       <p class="text-sm font-light">Games and products are eligible for refund within 14 days of purchase.</p>
                       <ul class="list-disc list-inside md:ml-4">
-                        <li class="text-xs font-light text-gray-700">The time of your request for refund/credit is no more than 7 days from the time of purchase.</li>
-                        <li class="text-xs font-light text-gray-700">The game has not been activated or downloaded (including keyless redemption).</li>
-                        <li class="text-xs font-light text-gray-700">Due to Paypal limitations, Paypal refunds cannot be processed any later than  120 days from purchase.</li>
+                        <li class="text-sm font-light text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                        <li class="text-sm font-light text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                        <li class="text-sm font-light text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                        <li class="text-sm font-light text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
                       </ul>
                     </div>
                   </div>
@@ -221,63 +233,8 @@
             </div>
             <!-- Right Column -->
             <div class="flex flex-col space-y-5 mt-5 md:mt-0">
-              <!-- Sold By  -->
-              <div class="border px-3 py-2">
-                <h1 class="text-xl font-bold theme-green my-2">Sold By</h1>
-              <div class="flex flex-row justify-between lg:items-center">
-                <div class="info-section">
-                  <div class="relative flex items-center space-x-2">
-                    <span class="inline-block relative">
-                        <img class="h-14 w-14 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixqx=WeaPOup1kl&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
-                        <span class="absolute bottom-0 right-0 block h-5 w-5 rounded-full ring-2 ring-green-400 bg-white text-green-400 font-medium text-center pt-0.5 text-xs">1h</span>
-                      </span>
-                    <div class="flex-1 min-w-0">
-                        <svg class="h-5 w-5 -mt-4 text-yellow-400" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medal" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <path fill="currentColor" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm92.52 157.26l-37.93 36.96 8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64 23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39 4.11 0 8.22 2.14 10.33 6.39l23.43 47.52 52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"></path>
-                        </svg>
-                    </div>
-                  </div>
-                  <a href="#" class="text-xs uppercase text-gray-500 hover:text-green-700">richardhyunjinseung@gmail.com</a>
-                  <ul class="flex flex-row mt-1">
-                    <li>
-                      <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                      </svg>
-                    </li>
-                    <li>
-                      <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                      </svg>
-                    </li>
-                    <li>
-                      <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                      </svg>
-                    </li>
-                    <li>
-                      <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                      </svg>
-                    </li>
-                    <li>
-                      <svg class="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                      </svg>
-                    </li>
-                    <span class="text-sm font-semibold ml-1 -mt-1">
-                        (11)
-                    </span>
-                  </ul>
-                </div>
-                <div class="chat-section -ml-7">
-                  <button type="button" class="my-2 bg-gradient-to-r from-green-500 to-yellow-500 hover:from-gray-800 hover:to-gray-800 text-white focus:outline-none px-8 py-3 lg:px-12 py-4 uppercase text-xs lg:text-md font-semibold rounded-full shadow-md">
-                    Chat
-                  </button>
-                </div>
-              </div>
-              </div>
               <!-- Billing Information  -->
-              <div class="border px-3 py-2">
+              <div class="border px-3 py-2 pt-0.5">
                 <h1 class="text-xl font-bold theme-green my-2">Billing Information</h1>
                 <div class="relative max-w-xl mx-auto">
                   <form action="#" method="POST" class="grid grid-cols-1 gap-y-4 lg:gap-y-6 lg:grid-cols-2 lg:gap-x-8 mt-3">
