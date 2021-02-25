@@ -5,6 +5,8 @@ Visit Product Page: https://saadgulzar.tech/3rdMarketPlace/product.html
 
 Visit Shop Page: https://saadgulzar.tech/3rdMarketPlace/shop.html
 
-Visit Shop Page: https://saadgulzar.tech/3rdMarketPlace/checkout.html
+Visit Checkout Page: https://saadgulzar.tech/3rdMarketPlace/checkout.html
 
-Visit Shop Page: https://saadgulzar.tech/3rdMarketPlace/order-details.html
+Visit Order Detail Page: https://saadgulzar.tech/3rdMarketPlace/order-details.html
+
+Visit About US Page: https://saadgulzar.tech/3rdMarketPlace/about-us.html
