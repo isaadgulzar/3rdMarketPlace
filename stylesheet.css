@@ -1,5 +1,5 @@
 #home-banner {
-    background: url('./assets/images/home-banner.jpeg');
+    background: url('./assets/images/3mp_clear_main.png') no-repeat center center;
     background-size: 100% 100%;
 }
 .theme-orange {
@@ -33,7 +33,8 @@ button:focus {outline:0;}
 
 /* Single Product Page  */
 .breadCrumb > ol li a{
-    font-size: 1rem !important;
+    font-size: .7rem !important;
+    line-height: 12px;
 }
  @media screen and (min-width:1024px) and (max-width:1180px){
     .breadCrumb > ol li a{
@@ -47,7 +48,8 @@ button:focus {outline:0;}
 }
 
 .products .breadCrumb > ol li a{
-    font-size: .8rem !important;
+    font-size: .7rem !important;
+    line-height: 12px;
 }
  @media screen and (min-width:1024px) and (max-width:1180px){
     .products .breadCrumb > ol li a{
@@ -99,5 +101,143 @@ input[type=range]::-webkit-slider-thumb {
     }
     to {
         transform: rotate(0deg);
+    }
+}
+
+/* Calender Styles */
+#wc-bookings-booking-form .wc-bookings-date-picker .ui-widget-content {
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%) !important;
+}
+#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker-header {
+    border-top-right-radius: .375rem;
+    border-top-left-radius: .375rem;
+    background: #fff;
+}
+.wc-bookings-date-picker .ui-datepicker .ui-datepicker-prev, .wc-bookings-date-picker .ui-datepicker .ui-datepicker-next {
+    top: 2px !important;
+    background: #2FAA00;
+    border-radius: 0;
+    height: 2.25em;
+}
+.wc-bookings-date-picker .ui-datepicker .ui-datepicker-prev{
+    border-top-left-radius: .375rem;
+    border-bottom-left-radius: .375rem;
+}
+.wc-bookings-date-picker .ui-datepicker .ui-datepicker-next {
+    border-top-right-radius: .375rem;
+    border-bottom-right-radius: .375rem;
+}
+.wc-bookings-date-picker .ui-datepicker .ui-datepicker-prev.ui-state-hover, .wc-bookings-date-picker .ui-datepicker .ui-datepicker-next.ui-state-hover {
+    background: #1f2937 !important;
+}
+.wc-bookings-date-picker .ui-datepicker .ui-datepicker-title {
+    color: #1f2937;
+}
+.ui-datepicker-title span.ui-datepicker-month {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.ui-datepicker-title span.ui-datepicker-year {
+    color: #4b5563;
+}
+#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker th span, .wc-bookings-form-start-time,.wc-bookings-form-end-time {
+    font-size: .875rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    color: #4b5563;
+}
+.wc-bookings-date-picker .ui-datepicker th {
+    color: #374151;
+    background: #fff;
+}
+#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker th {
+    border: 1px solid #e5e7eb !important;
+}
+#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker th:first-child {
+    border-left: 0;
+}
+#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker th:last-child {
+    border-right: 0;
+}
+#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker td{
+    border: 1px solid #e5e7eb !important;
+}
+.wc-bookings-date-picker-timezone-block {
+    margin-bottom: 10px !important;
+    letter-spacing: .015em;
+    font-size: 1rem;
+    line-height: 1.75rem; 
+    font-weight: 700;
+    color: rgba(107,114,128,60%);
+}
+#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker tbody tr:last-child td:last-child a {
+    border-bottom-right-radius: .375rem;
+}
+#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker tbody tr:last-child td:first-child a {
+    border-bottom-left-radius: .375rem;
+}
+#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker th:last-child {
+    border-right: 0;
+}
+span.wc-bookings-date-picker-timezone {
+    color: #2FAA00;
+}
+
+
+.wc-bookings-booking-form fieldset {
+    margin: 0 !important;
+}
+.wc-bookings-booking-form .wc-bookings-time-block-picker div {
+    margin-bottom: 18px;
+    width: 30%;
+    padding: 15px 20px;
+    border: 1px solid rgb(0 0 0 / 10%);
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%) !important;
+}
+#wc-bookings-booking-form .block-picker {
+    justify-content: center;
+}
+.wc-bookings-booking-form .wc-bookings-booking-cost {
+    background: #F3F4F6 !important;
+}
+.booking-wrap-cart {
+    text-align: center !important;
+    margin-bottom: 7px;
+}
+button.wc-bookings-booking-form-button.single_add_to_cart_button {
+    background: #1f2937;
+    color: white;
+    text-transform: uppercase;
+    padding: 1rem 3rem;
+    font-size: .75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    outline: none;
+}
+button.wc-bookings-booking-form-button.single_add_to_cart_button:hover {
+    background: linear-gradient(to right, #10b981,#f59e0b);
+}
+/* Range Slider  */
+.pf_rngstyle_thin .irs-max, .pf_rngstyle_thin .irs-min {
+    color: #4b5563 !important;
+    background: #F3F4F6 !important;
+}
+.pf_rngstyle_thin .irs-from, .pf_rngstyle_thin .irs-single, .pf_rngstyle_thin .irs-to {
+    color: #fff;
+    background: #5BDD63 !important;
+}
+.pf_rngstyle_thin .irs-bar {
+    background: url('https://saadgulzar.tech/3rdMarketPlace/assets/images/slider.png') repeat-x !important;
+}
+#gameOn {
+    background: url('./assets/images/gameon.png') no-repeat center center;
+    background-size: 100% 100%;
+}
+
+@media screen and (max-width:640px){
+    #home-banner {
+        height: 250px;
     }
 }
