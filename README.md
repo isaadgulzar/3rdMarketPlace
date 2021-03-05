@@ -11,4 +11,4 @@ Visit Order Detail Page: https://saadgulzar.tech/3rdMarketPlace/order-details.ht
 
 Visit About US Page: https://saadgulzar.tech/3rdMarketPlace/about-us.html
 
-Visit Dashboard Page: https://saadgulzar.tech/3rdMarketPlace/dashboard.html
+Visit Buyer Dashboard Page: https://saadgulzar.tech/3rdMarketPlace/buyer.html
