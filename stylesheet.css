@@ -15,7 +15,7 @@
     background: #2FAA00;
 }
 .theme-border-green {
-    border-color: #2FAA00;
+    border-color: #2FAA00 !important;
 }
 .bg-lightgreen {
     background: #5bdd63;
@@ -240,4 +240,9 @@ button.wc-bookings-booking-form-button.single_add_to_cart_button:hover {
     #home-banner {
         height: 250px;
     }
+}
+
+/* Seller / Vendor Page  */
+.filled-star {
+    color: #FBBF24;
 }
