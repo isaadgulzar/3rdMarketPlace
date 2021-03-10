@@ -13,4 +13,4 @@ Visit About US Page: https://saadgulzar.tech/3rdMarketPlace/about-us.html
 
 Visit Buyer Dashboard Page: https://saadgulzar.tech/3rdMarketPlace/buyer.html
 
-Visit Seller Page: https://saadgulzar.tech/3rdMarketPlace/buyer.html
+Visit Seller Page: https://saadgulzar.tech/3rdMarketPlace/seller.html
