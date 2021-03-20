@@ -330,3 +330,7 @@ button.wc-bookings-booking-form-button.single_add_to_cart_button:hover {
   .bg-gray {
       background: rgba(0, 0, 139, 20%);
   }
+/* For Disabled Inputs   */
+.disabled-text:disabled {
+    color: rgb(194, 194, 194);
+}
