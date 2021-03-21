@@ -16,3 +16,5 @@ Visit Buyer Dashboard Page: https://saadgulzar.tech/3rdMarketPlace/buyer.html
 Visit Seller Page: https://saadgulzar.tech/3rdMarketPlace/seller.html
 
 Visit Seller Dashboard: https://saadgulzar.tech/3rdMarketPlace/seller-dashboard.html
+
+Visit Add Product Page: https://saadgulzar.tech/3rdMarketPlace/add-product.html
