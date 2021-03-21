@@ -334,3 +334,65 @@ button.wc-bookings-booking-form-button.single_add_to_cart_button:hover {
 .disabled-text:disabled {
     color: rgb(194, 194, 194);
 }
+
+/* CustomRangeSlider  */
+input.customRange[type='range'] {
+    margin: 0;
+    padding: 0;
+    height: 1.5em;
+    background: transparent;
+    font: 1em arial, sans-serif;
+}
+input.customRange[type='range'], input.customRange[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+input.customRange[type='range']::-webkit-slider-runnable-track {
+    box-sizing: border-box;
+    border: none;
+    height: 0.25em;
+    background: #e5e7eb;
+}
+input.customRange[type='range']::-moz-range-track {
+    box-sizing: border-box;
+    border: none;
+    height: 0.25em;
+    background: #e5e7eb;
+}
+input.customRange[type='range']::-ms-track {
+    box-sizing: border-box;
+    border: none;
+    height: 0.25em;
+    background: #e5e7eb;
+}
+input.customRange[type='range']::-webkit-slider-thumb {
+    margin-top: -0.625em;
+    box-sizing: border-box;
+    border: none;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    background: #2FAA00;
+}
+input.customRange[type='range']::-moz-range-thumb {
+    box-sizing: border-box;
+    border: none;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    background: #2FAA00;
+}
+input.customRange[type='range']::-ms-thumb {
+    margin-top: 0;
+    box-sizing: border-box;
+    border: none;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    background: #2FAA00;
+}
+input.customRange[type='range']::-ms-tooltip {
+    display: none;
+}
+
+
+   
