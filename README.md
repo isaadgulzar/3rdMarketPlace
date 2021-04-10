@@ -18,3 +18,7 @@ Visit Seller Page: https://saadgulzar.tech/3rdMarketPlace/seller.html
 Visit Seller Dashboard: https://saadgulzar.tech/3rdMarketPlace/seller-dashboard.html
 
 Visit Add Product Page: https://saadgulzar.tech/3rdMarketPlace/add-product.html
+
+Visit Login Page: https://saadgulzar.tech/3rdMarketPlace/login.html
+
+Visit Signup Page: https://saadgulzar.tech/3rdMarketPlace/signup.html
